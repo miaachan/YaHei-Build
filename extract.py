@@ -83,9 +83,9 @@ class TTCFile:
     self.output = transformVariant
 
   def openTTF(self, isui, index):
-    target = "Sarasa Gothic CL"
+    target = "Sarasa Gothic HC"
     if isui:
-      target = "Sarasa UI CL"
+      target = "Sarasa UI HC"
     font = ff.open('%s(%s%s)'%(self.file, target, self.variant))
     return TTFTask(font, self.variant, isui, index)
 
@@ -111,7 +111,7 @@ class TTCFile:
 def listTtc(pattern):
   for ttc in glob(pattern):
     for face in ff.fontsInFile(ttc):
-      if m := re.match(r"Sarasa Gothic CL(.*)?", face):
+      if m := re.match(r"Sarasa Gothic HC(.*)?", face):
         yield TTCFile(ttc, m.group(1))
 
 def transformVariant(input, index):
